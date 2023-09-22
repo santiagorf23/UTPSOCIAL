@@ -33,8 +33,8 @@
             </div>
         </header>
         <main class="sm:container sm:mx-auto mx-0 sm:mt-10 mt-3">
-            <h2 class="font-black text-center text-3xl sm:mb-10">@yield('titulo')</h2>
-            @yield('contenido')
+            <h2 class="font-black text-center text-3xl sm:mb-10">{{ $title }}</h2>
+            {{ $slot }}
         </main>
         <footer class="mt-10 text-center p-5 text-gray-500 font-bold uppercase">
             Todos los derechos reservados {{ now()->year }}

@@ -1,12 +1,4 @@
-@extends('layouts.app')
-<head>
-    <title>Iniciar Sesión</title>
-</head>
-@section('titulo')
-    Iniciar Sesión
-@endsection
-
-@section('contenido')
+<x-layout title="Iniciar Sesión" >
     <div class="md:flex md:justify-center md:items-center">
         <div class="md:w-4/12 bg-white p-6 rounded-lg shadow-2xl">
             <div class="md:flex md:justify-center hidden sm:block">
@@ -16,42 +8,13 @@
                 Ingresa para ver fotos y vídeos de tus amigos.
             </h2>
             <hr class="mb-5">
-
             <form action="{{ route('login') }}" method="POST">
                 @csrf
                 @if (session('warning'))
                     <p class=" bg-red-500 text-white my-2 rounded-lg p-2 text-center">{{ session('warning') }}</p>
                 @endif
-                <div class="mb-5">
-                    <label for="email" class="mb-2 block uppercase text-gray-500 font-bold">
-                        Correo:
-                    </label>
-                    <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        placeholder="Correo electronico"
-                        class="border p-3 w-full rounded-lg @error('email') border-red-500 @enderror"
-                    >
-                    @error('email')
-                        <p class=" bg-red-500 text-white my-2 rounded-lg p-2 text-center">{{ $message }}</p>
-                    @enderror
-                </div>
-                <div class="mb-5">
-                    <label for="password" class="mb-2 block uppercase text-gray-500 font-bold">
-                        Contraseña:
-                    </label>
-                    <input
-                        id="password"
-                        name="password"
-                        type="password"
-                        placeholder="Contraseña"
-                        class="border p-3 w-full rounded-lg @error('password') border-red-500 @enderror"
-                    >
-                    @error('password')
-                        <p class=" bg-red-500 text-white my-2 rounded-lg p-2 text-center">{{ $message }}</p>
-                    @enderror
-                </div>
+                <x-forms.input name="email" title="Correo:" placeholder="Correo Electronico" type="email"/>
+                <x-forms.input name="password" title="Contraseña:" placeholder="Contraseña" type="password"/>
                 <input
                     type="submit"
                     value="Iniciar Sesión"
@@ -62,9 +25,5 @@
             <h2 class="text-center"><a class=" text-blue-600" href="{{ route('register') }}">¿Olvidaste tu contraseña?</a></h2>
         </div>
     </div>
-    <div class="md:flex md:justify-center md:items-center mt-10">
-        <div class="md:w-4/12 bg-white p-6 rounded-lg shadow-2xl">
-            <h2 class="text-center">¿No tienes una cuenta? <a class=" text-blue-600" href="{{ route('register') }}">Regístrate</a></h2>
-        </div>
-    </div>
-@endsection
+    <x-card-footer text="¿No tienes una cuenta?" route="{{ route('register') }}" textSecondary="Regístrate"/>
+</x-layout>
