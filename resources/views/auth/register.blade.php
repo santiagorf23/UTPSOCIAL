@@ -1,4 +1,4 @@
-<x-layout title="Registrate" >
+<x-layout title="Registrate" titlePage="Registrate">
     <x-card-main text="Registrate para ver videos y fotos de tus amigos.">
         <x-forms.form route="{{ route('login') }}" method="POST">
                 <x-forms.input name="name" title="Correo:" :value="old('name') ?? old('name')" placeholder="Correo Electronico" type="email"/>
